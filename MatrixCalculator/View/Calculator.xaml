@@ -1,0 +1,316 @@
+﻿<UserControl x:Class="MatrixCalculator.View.Calculator"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MatrixCalculator.View"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             mc:Ignorable="d" 
+             xmlns:vm ="clr-namespace:MatrixCalculator.ViewModel"
+             d:DesignHeight="636" d:DesignWidth="397" 
+             xmlns:controls ="clr-namespace:MatrixCalculator.CustomControls"
+             xmlns:converters="clr-namespace:MatrixCalculator.PropertyConverters">
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" FalseValue="Collapsed"/>
+        <converters:BooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" FalseValue="Collapsed" Inverted="True"/>
+    </UserControl.Resources>
+    
+    <Border CornerRadius="6" Background="White" d:DataContext="{d:DesignInstance {x:Type vm:MainWindowVM}}">
+        <StackPanel VerticalAlignment="Bottom" Margin="16.9,0,16.9,18">
+
+            <StackPanel Orientation="Vertical">
+                <Grid>
+                    <ContentPresenter Width="364" Visibility="{Binding CalculatorViewModel.IsResultString, Converter={StaticResource InvertedBooleanToVisibilityConverter}}" Content="{Binding CalculatorViewModel.Result}" ContentTemplate="{DynamicResource NumericMatrixTemplate}"/>
+                    <TextBlock TextAlignment="Right" Visibility="{Binding CalculatorViewModel.IsResultString, Converter={StaticResource BooleanToVisibilityConverter}}" Text="{Binding CalculatorViewModel.Result}" FontFamily="SF Pro Display" FontSize="25" Foreground="#4D4D4D" FontWeight="Medium"/>
+                </Grid>
+                <controls:ExpressionTextBox Width="363" TextAlignment="Right" BorderThickness="0" EnterPressed="{Binding CalculatorViewModel.EnterPressed}" CurrentCaretIndex="{Binding CalculatorViewModel.CurrentCaretIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Text="{Binding CalculatorViewModel.Expression, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontFamily="SF Pro Display" FontSize="25" Foreground="#4D4D4D" FontWeight="Medium"/>
+                <Border Height="1" Background="#707070" Opacity="0.13" Margin="0,0,0,6"/>
+                <StackPanel Orientation="Horizontal">
+                    <Border Grid.Column="0" Width="63" Height="35" CornerRadius="8" Background="#F6F6F6" Margin="0,0,6,0">
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding CalculatorViewModel.Power}" />
+                        </Border.InputBindings>
+                        <TextBlock Foreground="#B7B7B7" FontSize="22" FontFamily="SF Pro Display" FontWeight="Light" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Text="A"/><Run BaselineAlignment="Superscript" Text="n" FontSize="7"/></TextBlock>
+                    </Border>
+
+                    <Border Grid.Column="1" Width="63" Height="35" CornerRadius="8" Background="#F6F6F6" Margin="0,0,6,0">
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding CalculatorViewModel.Percent}" />
+                        </Border.InputBindings>
+                        <TextBlock Text="%" Foreground="#B7B7B7" FontSize="22" FontFamily="SF Pro Display" FontWeight="Light" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+
+                    <Border Grid.Column="2" Width="34" Height="35" CornerRadius="8" Background="#F6F6F6" Margin="0,0,5,0">
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding CalculatorViewModel.OpenBracket}" />
+                        </Border.InputBindings>
+                        <TextBlock Text="(" Foreground="#B7B7B7" FontSize="22" FontFamily="SF Pro Display" FontWeight="Light" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+
+                    <Border Grid.Column="3" Width="34" Height="35" CornerRadius="8" Background="#F6F6F6" Margin="0,0,6,0">
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding CalculatorViewModel.CloseBracket}" />
+                        </Border.InputBindings>
+                        <TextBlock Text=")" Foreground="#B7B7B7" FontSize="22" FontFamily="SF Pro Display" FontWeight="Light" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+
+                    <Border Grid.Column="4" Width="63" Height="35" CornerRadius="8" Background="#F6F6F6" Margin="0,0,6,0">
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding CalculatorViewModel.Clear}" />
+                        </Border.InputBindings>
+                        <TextBlock Text="C" Foreground="#B7B7B7" FontSize="22" FontFamily="SF Pro Display" FontWeight="Light" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border Width="77" Height="35" CornerRadius="8" Background="#F6F6F6" >
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding CalculatorViewModel.DeleteSym}" />
+                        </Border.InputBindings>
+                        <Image Source="{StaticResource DeleteExpressionElemIcon}" Width="25" />
+                    </Border>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Grid Width="145" Margin="0,6,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Border Height="35" Background="#74CCFF" CornerRadius="8" Margin="0,0,7,8" >
+                            <Border.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding CalculatorViewModel.RowsCount}" />
+                            </Border.InputBindings>
+                            <TextBlock Text="rows" Foreground="#FFFFFF" FontSize="22" FontFamily="SF Pro Display" FontWeight="Light" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <Border Height="35" Background="#74CCFF" CornerRadius="8" Margin="0,0,7,8" Grid.Column="0" Grid.Row="1">
+                            <Border.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding CalculatorViewModel.DeleteSym}" />
+                            </Border.InputBindings>
+                            <TextBlock Text="det" Foreground="#FFFFFF" FontSize="22" FontFamily="SF Pro Display" FontWeight="Light" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <Border Height="35" Background="#74CCFF" CornerRadius="8" Margin="0,0,7,8" Grid.Column="0" Grid.Row="2">
+                            <Border.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding CalculatorViewModel.NormMatrix}" />
+                            </Border.InputBindings>
+                            <TextBlock Text="norm" Foreground="#FFFFFF" FontSize="22" FontFamily="SF Pro Display" FontWeight="Light" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <Border Height="35" Background="#74CCFF" CornerRadius="8" Margin="0,0,7,0" Grid.Column="0" Grid.Row="3">
+                            <Border.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding CalculatorViewModel.TransposeMatrix}" />
+                            </Border.InputBindings>
+                            <TextBlock Foreground="#FFFFFF" FontSize="22" FontFamily="SF Pro Display" FontWeight="Light" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Text="A"/><Run BaselineAlignment="Superscript" Text="T" FontSize="7"/></TextBlock>
+                        </Border>
+
+                        <Border Height="35" Background="#74CCFF" CornerRadius="8" Margin="0,0,7,8" Grid.Column="1" Grid.Row="0">
+                            <Border.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding CalculatorViewModel.ColumnsCount}" />
+                            </Border.InputBindings>
+                            <TextBlock Text="cols" Foreground="#FFFFFF" FontSize="22" FontFamily="SF Pro Display" FontWeight="Light" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <Border Height="35" Background="#74CCFF" CornerRadius="8" Margin="0,0,7,8" Grid.Column="1" Grid.Row="1">
+                            <Border.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding CalculatorViewModel.MatrixRank}" />
+                            </Border.InputBindings>
+                            <TextBlock Text="rank" Foreground="#FFFFFF" FontSize="22" FontFamily="SF Pro Display" FontWeight="Light" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <Border Height="35" Background="#74CCFF" CornerRadius="8" Margin="0,0,7,8" Grid.Column="1" Grid.Row="2">
+                            <Border.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding CalculatorViewModel.DiagMatrix}" />
+                            </Border.InputBindings>
+                            <TextBlock Text="diag" Foreground="#FFFFFF" FontSize="22" FontFamily="SF Pro Display" FontWeight="Light" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <Border Height="35" Background="#74CCFF" CornerRadius="8" Margin="0,0,7,0" Grid.Column="1" Grid.Row="3">
+                            <Border.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding CalculatorViewModel.InvMatrix}" />
+                            </Border.InputBindings>
+                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <Border Height="1" Width="16" Background="White"/>
+                                <TextBlock Foreground="#FFFFFF" Text="A" FontSize="22" FontFamily="SF Pro Display" FontWeight="Light" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                    <Grid Width="126" Margin="3.5,6,4.1,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Border Height="35" Background="#B7B7B7" CornerRadius="7" Grid.Column="0" Grid.Row="0" Margin="3.5,0,3.5,8">
+                            <Border.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding CalculatorViewModel.NumberOne}" />
+                            </Border.InputBindings>
+                            <TextBlock Text="1" Foreground="#FFFFFF" FontSize="22" FontFamily="SF Pro Display" FontWeight="Regular" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <Border Height="35" Background="#B7B7B7" CornerRadius="7" Grid.Column="0" Grid.Row="1" Margin="3.5,0,3.5,8">
+                            <Border.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding CalculatorViewModel.NumberFour}" />
+                            </Border.InputBindings>
+                            <TextBlock Text="4" Foreground="#FFFFFF" FontSize="22" FontFamily="SF Pro Display" FontWeight="Regular" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <Border Height="35" Background="#B7B7B7" CornerRadius="7" Grid.Column="0" Grid.Row="2" Margin="3.5,0,3.5,8">
+                            <Border.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding CalculatorViewModel.NumberSeven}" />
+                            </Border.InputBindings>
+                            <TextBlock Text="7" Foreground="#FFFFFF" FontSize="22" FontFamily="SF Pro Display" FontWeight="Regular" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <Border Height="35" Background="#B7B7B7" CornerRadius="7" Grid.Column="0" Grid.Row="3" Margin="3.5,0,3.5,0">
+                            <Border.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding CalculatorViewModel.NumberZero}" />
+                            </Border.InputBindings>
+                            <TextBlock Text="0" Foreground="#FFFFFF" FontSize="22" FontFamily="SF Pro Display" FontWeight="Regular" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+
+
+                        <Border Height="35" Background="#B7B7B7" CornerRadius="7" Grid.Column="1" Grid.Row="0" Margin="3.5,0,3.5,8">
+                            <Border.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding CalculatorViewModel.NumberTwo}" />
+                            </Border.InputBindings>
+                            <TextBlock Text="2" Foreground="#FFFFFF" FontSize="22" FontFamily="SF Pro Display" FontWeight="Regular" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <Border Height="35" Background="#B7B7B7" CornerRadius="7" Grid.Column="1" Grid.Row="1" Margin="3.5,0,3.5,8">
+                            <Border.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding CalculatorViewModel.NumberFive}" />
+                            </Border.InputBindings>
+                            <TextBlock Text="5" Foreground="#FFFFFF" FontSize="22" FontFamily="SF Pro Display" FontWeight="Regular" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <Border Height="35" Background="#B7B7B7" CornerRadius="7" Grid.Column="1" Grid.Row="2" Margin="3.5,0,3.5,8">
+                            <Border.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding CalculatorViewModel.NumberEight}" />
+                            </Border.InputBindings>
+                            <TextBlock Text="8" Foreground="#FFFFFF" FontSize="22" FontFamily="SF Pro Display" FontWeight="Regular" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <Border Height="35" Background="#B7B7B7" CornerRadius="7" Grid.Column="1" Grid.Row="3" Margin="3.5,0,3.5,0">
+                            <Border.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding CalculatorViewModel.ChangeSign}" />
+                            </Border.InputBindings>
+                            <TextBlock Text="+/-" Foreground="#FFFFFF" FontSize="22" FontFamily="SF Pro Display" FontWeight="Regular" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+
+
+                        <Border Height="35" Background="#B7B7B7" CornerRadius="7" Grid.Column="2" Grid.Row="0" Margin="3.5,0,3.5,8">
+                            <Border.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding CalculatorViewModel.NumberThree}" />
+                            </Border.InputBindings>
+                            <TextBlock Text="3" Foreground="#FFFFFF" FontSize="22" FontFamily="SF Pro Display" FontWeight="Regular" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <Border Height="35" Background="#B7B7B7" CornerRadius="7" Grid.Column="2" Grid.Row="1" Margin="3.5,0,3.5,8">
+                            <Border.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding CalculatorViewModel.NumberSix}" />
+                            </Border.InputBindings>
+                            <TextBlock Text="6" Foreground="#FFFFFF" FontSize="22" FontFamily="SF Pro Display" FontWeight="Regular" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <Border Height="35" Background="#B7B7B7" CornerRadius="7" Grid.Column="2" Grid.Row="2" Margin="3.5,0,3.5,8">
+                            <Border.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding CalculatorViewModel.NumberNine}" />
+                            </Border.InputBindings>
+                            <TextBlock Text="9" Foreground="#FFFFFF" FontSize="22" FontFamily="SF Pro Display" FontWeight="Regular" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <Border Height="35" Background="#B7B7B7" CornerRadius="7" Grid.Column="2" Grid.Row="3" Margin="3.5,0,3.5,0">
+                            <Border.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding CalculatorViewModel.Dot}" />
+                            </Border.InputBindings>
+                            <TextBlock Text="." Foreground="#FFFFFF" FontSize="22" FontFamily="SF Pro Display" FontWeight="Regular" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+
+                    </Grid>
+                    <Grid Width="77" Margin="7,6,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Border Height="78" Background="#FB7D93" CornerRadius="7" Grid.Row="0" Margin="0,0,0,8">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Border CornerRadius="7,0,0,0" Background="Transparent" Grid.Column="0" Grid.Row="0">
+                                    <Border.InputBindings>
+                                        <MouseBinding MouseAction="LeftClick" Command="{Binding CalculatorViewModel.Plus}" />
+                                    </Border.InputBindings>
+                                    <TextBlock Text="+" Foreground="#FFFFFF" FontSize="28" FontFamily="SF Pro Display" FontWeight="Regular" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0"/>
+                                </Border>
+
+                                <Border CornerRadius="0,0,0,7" Background="Transparent" Grid.Column="0" Grid.Row="1">
+                                    <Border.InputBindings>
+                                        <MouseBinding MouseAction="LeftClick" Command="{Binding CalculatorViewModel.Multiply}" />
+                                    </Border.InputBindings>
+                                    <TextBlock Text="✕" Foreground="#FFFFFF" FontSize="21" FontFamily="SF Pro Display" FontWeight="Regular" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+
+                                <Border CornerRadius="0,7,0,0" Background="Transparent" Grid.Column="1" Grid.Row="0">
+                                    <Border.InputBindings>
+                                        <MouseBinding MouseAction="LeftClick" Command="{Binding CalculatorViewModel.Minus}" />
+                                    </Border.InputBindings>
+                                    <TextBlock Text="-" Foreground="#FFFFFF" FontSize="28" FontFamily="SF Pro Display" FontWeight="Regular" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+
+                                <Border CornerRadius="0,7,0,0" Background="Transparent" Grid.Column="1" Grid.Row="1">
+                                    <Border.InputBindings>
+                                        <MouseBinding MouseAction="LeftClick" Command="{Binding CalculatorViewModel.Divide}" />
+                                    </Border.InputBindings>
+                                    <TextBlock Text="÷" Margin="0,0,0,5" Foreground="#FFFFFF" FontSize="34" FontFamily="SF Pro Display" FontWeight="Regular" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+
+                            </Grid>
+                        </Border>
+
+                        <Border Height="35" Background="#9393FB" CornerRadius="7" Grid.Row="1" Margin="0,0,0,8">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseUp">
+                                    <i:InvokeCommandAction Command=""/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <TextBlock Text="Matrix" Foreground="#FFFFFF" FontSize="21" FontFamily="SF Pro Display" FontWeight="Light" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1"/>
+                        </Border>
+
+                        <Border Height="35" Background="#FFB381" CornerRadius="7" Grid.Row="2">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseUp">
+                                    <i:InvokeCommandAction Command="{Binding CalculatorViewModel.Equal}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <TextBlock Text="=" Foreground="#FFFFFF" FontSize="21" FontFamily="SF Pro Display" FontWeight="Light" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1"/>
+                        </Border>
+                    </Grid>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</UserControl>

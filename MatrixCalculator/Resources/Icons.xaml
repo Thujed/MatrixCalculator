@@ -1,0 +1,95 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:MatrixCalculator.Resources">
+    
+    <DrawingImage x:Key="EditIcon">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V282,567 H283,995 V0 H0 Z">
+                <GeometryDrawing>
+                    <GeometryDrawing.Brush>
+                        <SolidColorBrush Color="#FF6E6E6E" Opacity="1" Transform="1,0,0,1,0,-11.65" />
+                    </GeometryDrawing.Brush>
+                    <GeometryDrawing.Geometry>
+                        <PathGeometry FillRule="Nonzero" Transform="1,0,0,1,0,-11.65" Figures="M283.995,282.567z M0,0z M262.116,188.977A7.072,7.072,0,0,0,255.043,196.05L255.043,258.85A21.24,21.24,0,0,1,233.824,280.069L35.365,280.069A21.24,21.24,0,0,1,14.146,258.85L14.146,74.537A21.244,21.244,0,0,1,35.365,53.318L98.165,53.318A7.073,7.073,0,0,0,98.165,39.172L35.365,39.172A35.4,35.4,0,0,0,0,74.537L0,258.853A35.4,35.4,0,0,0,35.365,294.218L233.824,294.218A35.4,35.4,0,0,0,269.189,258.853L269.189,196.053A7.072,7.072,0,0,0,262.116,188.98z M262.116,188.977" />
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+                <GeometryDrawing>
+                    <GeometryDrawing.Brush>
+                        <SolidColorBrush Color="#FF6E6E6E" Opacity="1" Transform="1,0,0,1,-31.668,-0.261" />
+                    </GeometryDrawing.Brush>
+                    <GeometryDrawing.Geometry>
+                        <PathGeometry FillRule="Nonzero" Transform="1,0,0,1,-31.668,-0.261" Figures="M283.995,282.567z M0,0z M298.055,9.583A31.828,31.828,0,0,0,253.043,9.583L126.857,135.769A7.069,7.069,0,0,0,125.042,138.883L108.448,198.79A7.071,7.071,0,0,0,117.148,207.496L177.055,190.896A7.071,7.071,0,0,0,180.169,189.081L306.355,62.9A31.863,31.863,0,0,0,306.355,17.887z M142.268,140.366L245.541,37.09 278.848,70.4 175.572,173.672z M135.615,153.716L162.224,180.328 125.417,190.528z M296.353,52.894L288.853,60.394 255.543,27.086 263.043,19.586A17.681,17.681,0,0,1,288.043,19.586L296.343,27.886A17.708,17.708,0,0,1,296.353,52.894z M296.353,52.894" />
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <DrawingImage x:Key="DeleteIcon">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V61,983 H61,983 V0 H0 Z">
+                <DrawingGroup Transform="1,0,0,1,-4,-0.001">
+                    <DrawingGroup Transform="1,0,0,1,4,0.001">
+                        <GeometryDrawing>
+                            <GeometryDrawing.Brush>
+                                <SolidColorBrush Color="#FF6B6B6B" Opacity="1" Transform="1,0,0,1,0,-0.001" />
+                            </GeometryDrawing.Brush>
+                            <GeometryDrawing.Geometry>
+                                <PathGeometry FillRule="Nonzero" Transform="1,0,0,1,0,-0.001" Figures="M61.983,61.983z M0,0z M34.416,30.993L61.274,4.134A2.421,2.421,0,0,0,57.85,0.71L30.991,27.568 4.133,0.71A2.421,2.421,0,0,0,0.709,4.134L27.567,30.992 0.709,57.851A2.421,2.421,0,0,0,4.133,61.275L30.991,34.417 57.85,61.275A2.421,2.421,0,1,0,61.274,57.851z" />
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                    </DrawingGroup>
+                </DrawingGroup>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <DrawingImage x:Key="DeleteMainIcon">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V61,983 H61,983 V0 H0 Z">
+                <DrawingGroup Transform="1,0,0,1,-4,-0.001">
+                    <DrawingGroup Transform="1,0,0,1,4,0.001">
+                        <GeometryDrawing>
+                            <GeometryDrawing.Brush>
+                                <SolidColorBrush Color="#FFFFFFFF" Opacity="1" Transform="1,0,0,1,0,-0.001" />
+                            </GeometryDrawing.Brush>
+                            <GeometryDrawing.Geometry>
+                                <PathGeometry FillRule="Nonzero" Transform="1,0,0,1,0,-0.001" Figures="M61.983,61.983z M0,0z M34.416,30.993L61.274,4.134A2.421,2.421,0,0,0,57.85,0.71L30.991,27.568 4.133,0.71A2.421,2.421,0,0,0,0.709,4.134L27.567,30.992 0.709,57.851A2.421,2.421,0,0,0,4.133,61.275L30.991,34.417 57.85,61.275A2.421,2.421,0,1,0,61.274,57.851z" />
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                    </DrawingGroup>
+                </DrawingGroup>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <DrawingImage x:Key="DeleteExpressionElemIcon">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V15.5 H26.004 V0 H0 Z">
+                <DrawingGroup Transform="1,0,0,1,-1,-5.5">
+                    <GeometryDrawing Geometry="F1 M26.004,15.5z M0,0z M24.231,6L9.456,6 1.5,13.25 9.456,20.5 24.231,20.5A2.082,2.082,0,0,0,26.5,18.688L26.5,7.813A2.082,2.082,0,0,0,24.231,6z">
+                        <GeometryDrawing.Pen>
+                            <Pen Brush="#FF6B6B6B" Thickness="1" StartLineCap="Round" EndLineCap="Round" LineJoin="Round" MiterLimit="1" />
+                        </GeometryDrawing.Pen>
+                    </GeometryDrawing>
+                    <GeometryDrawing>
+                        <GeometryDrawing.Pen>
+                            <Pen Brush="#FF6B6B6B" Thickness="1" StartLineCap="Round" EndLineCap="Round" LineJoin="Round" MiterLimit="1" />
+                        </GeometryDrawing.Pen>
+                        <GeometryDrawing.Geometry>
+                            <PathGeometry FillRule="Nonzero" Transform="1,0,0,1,-3.048,-2.969" Figures="M26.004,15.5z M0,0z M23.438,13.5L18,18.938" />
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                    <GeometryDrawing>
+                        <GeometryDrawing.Pen>
+                            <Pen Brush="#FF6B6B6B" Thickness="1" StartLineCap="Round" EndLineCap="Round" LineJoin="Round" MiterLimit="1" />
+                        </GeometryDrawing.Pen>
+                        <GeometryDrawing.Geometry>
+                            <PathGeometry FillRule="Nonzero" Transform="1,0,0,1,-3.048,-2.969" Figures="M26.004,15.5z M0,0z M18,13.5L23.438,18.938" />
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                </DrawingGroup>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+</ResourceDictionary>
